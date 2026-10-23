@@ -110,8 +110,6 @@ class Woo_Product_Carousel_Slide extends \Elementor\Widget_Base {
             ]
         );
 
-        \Modista\Classes\Elementor_Controls_Helper::register_product_query_controls( $this );
-
         $this->end_controls_section();
 
         // Settings Section
@@ -801,8 +799,22 @@ class Woo_Product_Carousel_Slide extends \Elementor\Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $args     = \Modista\Classes\Elementor_Controls_Helper::build_product_query_args( $settings );
-        $products = new \WP_Query( $args );
+        $args = [
+            'post_type' => 'product',
+            'posts_per_page' => $settings['product_count'],
+        ];
+
+        if (!empty($settings['product_categories'])) {
+            $args['tax_query'] = [
+                [
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => $settings['product_categories'],
+                ],
+            ];
+        }
+
+        $products = new \WP_Query($args);
 
         // Slider Wrapper Class attributes
         $this->add_render_attribute('swiper', 'class', 'swiper');

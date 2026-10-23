@@ -1,8 +1,20 @@
 <?php
 /**
- * Product short measurement attributes (single product summary).
+ * Product attributes
  *
- * @package Modista
+ * Used by list_attributes() in the products class.
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product/product-attributes.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see https://woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
+ * @version 9.3.0
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -11,8 +23,8 @@ if ( ! $product_attributes ) {
 	return;
 }
 ?>
-<ul class="woocommerce-product-short-attributes shop_attributes mi-product-measurements d-flex flex-md-column flex-row flex-md-wrap flex-nowrap gap-md-7 gap-4 gap-row-2 fs-3--1 fw-400 lh-6 mb-3" aria-label="<?php esc_attr_e( 'Product Details', 'woocommerce' ); ?>">
+<ul class="woocommerce-product-short-attributes shop_attributes d-flex flex-wrap gap-7 gap-row-2 fs-3--1 fw-400 lh-6 mb-3" aria-label="<?php esc_attr_e( 'Product Details', 'woocommerce' ); ?>">
 	<?php foreach ( $product_attributes as $product_attribute_key => $product_attribute ) : ?>
-        <li class="d-flex gap-1 position-relative pe-3 flex-none"><?php echo wp_kses_post( $product_attribute['label'] ); ?>: <?php echo wp_kses_post( $product_attribute['value'] ); ?></li>
+        <li class="d-flex gap-1 position-relative pe-3"><?php echo wp_kses_post( $product_attribute['label'] ) ?>: <?php echo wp_kses_post( $product_attribute['value'] ) ?></li>
 	<?php endforeach; ?>
 </ul>
