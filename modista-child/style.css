@@ -3,7 +3,7 @@ Theme Name: پوسته فرزند مدیستا
 Author: Mehdi bagheri
 Author URI: https://www.rtl-theme.com/author/mhdibaqri/
 Description: پوسته فرزند مدیستا - پوسته فروشگاهی
-Version: 1.0
+Version: 1.0.1
 Template: modista
 */
 .search-input,
@@ -53,26 +53,8 @@ Template: modista
     font-size: 14px;
     border-bottom: 1px solid #99999933;
 }
-.mi-variation-select .color {
-    width: 28px !important;
-    height: 28px !important;
-}
 .variations-color__list .option-name {
     font-size: 13px;
-}
-@media (max-width: 767px) {
-  .woocommerce-variation-add-to-cart {
-    position: fixed !important;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    z-index: 9999;
-    background: #fff;
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.10);
-    box-sizing: border-box;
-  }
 }
 /*
 .nikan-track-form-container input {

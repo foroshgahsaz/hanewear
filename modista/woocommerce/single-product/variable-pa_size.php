@@ -30,21 +30,11 @@ $attributes_meta = [
     'metas'     => [],
 ];
 
-$context = isset( $context ) ? $context : 'summary';
-$is_aside  = ( 'aside' === $context );
-
-$wrapper_classes = 'mi-variation-select';
-$wrapper_classes .= $is_aside
-    ? ' mi-variation-select--aside d-md-none'
-    : ' mi-variation-select--summary d-none d-md-flex flex-wrap flex-md-nowrap gap-4 justify-content-between mt-8 fw-400';
-
 ?>
-<div class="<?php echo esc_attr( $wrapper_classes ); ?>" data-variation-name="attribute_<?php echo esc_attr( $attribute ); ?>">
-    <div class="d-flex align-items-center gap-4 flex-1">
-        <?php if ( ! $is_aside ) : ?>
+<div class="mi-variation-select d-flex flex-wrap flex-md-nowrap gap-4 justify-content-between mt-8 fw-400" data-variation-name="attribute_<?php echo $attribute; ?>">
+    <div class="d-flex align-items-center gap-4">
         <p class="mi-variation-select__title fs-3--1"><?php echo wc_attribute_label( $attribute ) . ':'; ?></p>
-        <?php endif; ?>
-        <ul class="variations-list d-flex gap-2 fs-4 flex-wrap">
+        <ul class="variations-list d-flex gap-2 fs-4">
 		    <?php
 		    // Get selected value.
 		    $selected = false;
@@ -94,7 +84,7 @@ $wrapper_classes .= $is_aside
 		    ?>
         </ul>
     </div>
-    <?php if ( ! $is_aside && ! empty( $attributes_meta['metas'] ) ) : ?>
+    <?php if( !empty($attributes_meta['metas']) ) : ?>
         <?php
         $attribute_id = wc_attribute_taxonomy_id_by_name($attribute);
         $help_note = get_option( "wc_attribute_pa_size_note-$attribute_id" );

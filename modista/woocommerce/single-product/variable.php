@@ -24,7 +24,7 @@ $variations_json = wp_json_encode( $available_variations );
 $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_json ) : _wp_specialchars( $variations_json, ENT_QUOTES, 'UTF-8', true );
 ?>
 
-<form class="cart variations_form_without_button pt-4 pt-md-6 border-top" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo $variations_attr; // WPCS: XSS ok. ?>">
+<form class="cart variations_form_without_button pt-6 border-top" action="<?php echo esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ); ?>" method="post" enctype='multipart/form-data' data-product_id="<?php echo absint( $product->get_id() ); ?>" data-product_variations="<?php echo $variations_attr; // WPCS: XSS ok. ?>">
 	<?php do_action( 'woocommerce_before_variations_form' ); ?>
 
     <?php if ( empty( $available_variations ) && false !== $available_variations ) :
@@ -55,17 +55,18 @@ $variations_attr = function_exists( 'wc_esc_json' ) ? wc_esc_json( $variations_j
 
             $attribute_name = 'pa_size';
 
+	        // Load the template.
 	        wc_get_template(
-		        'single-product/variable-' . $attribute_name . '.php',
+		        'single-product/variable-'. $attribute_name .'.php',
 		        array(
-			        'options'   => $attributes[ $attribute_name ],
-			        'attribute' => $attribute_name,
+			        'options'   => $attributes[$attribute_name],
+			        'attribute'   => $attribute_name,
 			        'product'   => $product,
-			        'context'   => 'summary',
 		        )
 	        );
 
-	        unset( $attributes[ $attribute_name ] );
+	        // Not render in default skin.
+	        unset($attributes[$attribute_name]);
         }
         ?>
 		<table class="variations" role="presentation">

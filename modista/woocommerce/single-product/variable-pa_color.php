@@ -48,8 +48,9 @@ defined( 'ABSPATH' ) || exit;
                 $color_value = get_term_meta($term->term_id, $attribute, true);
                 $selected = ($selected === $term->slug) ? ' selected' : '';
 
-                echo '<li id="' . esc_attr( $term->slug ) . '" class="d-flex align-items-center justify-content-center border cursor-pointer p-2 rounded-4' . $selected . '">' .
-                     '<span class="option-name">' .  esc_html( apply_filters( 'woocommerce_variation_option_name', $term->name, $term, $attribute, $product ) ) . '</span>' .
+                echo '<li id="' . esc_attr( $term->slug ) . '" class="d-flex align-items-center border cursor-pointer p-2 rounded-4' . $selected . '">' .
+                     '<span style="background-color: ' . esc_html($color_value) . '" class="color d-flex rounded-3"></span>' .
+                     '<span class="option-name flex-1 border-end me-2 pe-2">' .  esc_html( apply_filters( 'woocommerce_variation_option_name', $term->name, $term, $attribute, $product ) ) . '</span>' .
                      '<span class="badge" style="display: none;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">'.
                      '<path fill-rule="evenodd" clip-rule="evenodd" d="M14.6666 8C14.6666 11.6819 11.6818 14.6667 7.99992 14.6667C4.31802 14.6667 1.33325 11.6819 1.33325 8C1.33325 4.3181 4.31802 1.33333 7.99992 1.33333C11.6818 1.33333 14.6666 4.3181 14.6666 8ZM10.6868 5.97978C10.8821 6.17504 10.8821 6.49162 10.6868 6.68688L7.35347 10.0202C7.15821 10.2155 6.84163 10.2155 6.64636 10.0202L5.31303 8.68689C5.11777 8.49162 5.11777 8.17504 5.31303 7.97978C5.50829 7.78452 5.82488 7.78452 6.02014 7.97978L6.99992 8.95956L8.48981 7.46967L9.9797 5.97978C10.175 5.78452 10.4915 5.78452 10.6868 5.97978Z" fill="#598865"/>' .
                      '</svg></span>' .
