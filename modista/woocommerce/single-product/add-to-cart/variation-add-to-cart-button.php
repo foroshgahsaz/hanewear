@@ -14,7 +14,9 @@ global $product;
 <div class="woocommerce-variation-add-to-cart variations_button">
 	<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
-    <div class="d-flex justify-content-between align-items-end">
+    <div class="mi-purchase-actions d-flex flex-column flex-md-column gap-3">
+
+    <div class="mi-purchase-actions__row d-flex align-items-center gap-2 w-100">
 
     <?php
 	do_action( 'woocommerce_before_add_to_cart_quantity' );
@@ -30,9 +32,10 @@ global $product;
 	do_action( 'woocommerce_after_add_to_cart_quantity' );
 	?>
 
-    </div>
+	<button type="submit" class="single_add_to_cart_button button alt flex-1<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
 
-	<button type="submit" class="single_add_to_cart_button button alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+    </div>
+    </div>
 
 	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 

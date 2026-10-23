@@ -36,6 +36,8 @@ class Asset_Loader
             wp_enqueue_style($handle, MI_URL . $path);
         }
 
+        wp_enqueue_style('mi-custom', MI_URL . '/assets/css/custom.css', ['mi-frontend'], wp_get_theme()->get('Version'));
+
         // Optional font style
         if ( get_redux('basic_font_enable') == 1 ) {
             wp_enqueue_style('mi-font', MI_URL . '/assets/font/font-register.min.css');

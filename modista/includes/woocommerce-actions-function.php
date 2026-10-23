@@ -129,10 +129,16 @@ if ( ! function_exists( 'mi_woocommerce_template_single_short_attributes' ) ) {
 
         $product_attributes = array();
 
-		// Add product attributes to list.
-		$attributes = array_filter( $product->get_attributes(), 'wc_attributes_array_filter_visible' );
+		$attributes                 = array_filter( $product->get_attributes(), 'wc_attributes_array_filter_visible' );
+		$variation_attribute_names  = array_keys( $product->get_variation_attributes() );
 
 		foreach ( $attributes as $attribute ) {
+			$attribute_name = $attribute->get_name();
+
+			if ( in_array( $attribute_name, $variation_attribute_names, true ) ) {
+				continue;
+			}
+
 			$values = array();
 
 			if ( $attribute->is_taxonomy() ) {
@@ -196,6 +202,34 @@ if ( ! function_exists( 'mi_wc_get_rating_html' ) ) {
 		return ob_get_clean();
 	}
 }
+
+if ( ! function_exists( 'mi_woocommerce_template_single_size_variation_aside' ) ) {
+
+	function mi_woocommerce_template_single_size_variation_aside() {
+		global $product;
+
+		if ( ! $product instanceof WC_Product || $product->get_type() !== 'variable' ) {
+			return;
+		}
+
+		$attributes = $product->get_variation_attributes();
+
+		if ( empty( $attributes['pa_size'] ) ) {
+			return;
+		}
+
+		wc_get_template(
+			'single-product/variable-pa_size.php',
+			array(
+				'options'   => $attributes['pa_size'],
+				'attribute' => 'pa_size',
+				'product'   => $product,
+				'context'   => 'aside',
+			)
+		);
+	}
+}
+
 if ( ! function_exists( 'mi_woocommerce_template_single_variation' ) ) {
 
 	/**
@@ -231,25 +265,30 @@ if ( ! function_exists( 'mi_woocommerce_single_product_features_aside' ) ) {
 	 * Output the product features add to aside area.
 	 */
 	function mi_woocommerce_single_product_features_aside() {
-		global $woocommerce;
-
-        if ( $woocommerce->cart->needs_shipping() && in_array( 'free_shipping', array_keys( $woocommerce->shipping->get_shipping_methods() ) ) ) :
-            ?>
-            <div class="free-shipping feature-box">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 14H13C14.1 14 15 13.1 15 12V2H6C4.5 2 3.19001 2.82999 2.51001 4.04999" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 17C2 18.66 3.34 20 5 20H6C6 18.9 6.9 18 8 18C9.1 18 10 18.9 10 20H14C14 18.9 14.9 18 16 18C17.1 18 18 18.9 18 20H19C20.66 20 22 18.66 22 17V14H19C18.45 14 18 13.55 18 13V10C18 9.45 18.45 9 19 9H20.29L18.58 6.01001C18.22 5.39001 17.56 5 16.84 5H15V12C15 13.1 14.1 14 13 14H12" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M8 22C9.10457 22 10 21.1046 10 20C10 18.8954 9.10457 18 8 18C6.89543 18 6 18.8954 6 20C6 21.1046 6.89543 22 8 22Z" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M16 22C17.1046 22 18 21.1046 18 20C18 18.8954 17.1046 18 16 18C14.8954 18 14 18.8954 14 20C14 21.1046 14.8954 22 16 22Z" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M22 12V14H19C18.45 14 18 13.55 18 13V10C18 9.45 18.45 9 19 9H20.29L22 12Z" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 8H8" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 11H6" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M2 14H4" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span><?php esc_html_e( 'ارسال رایگان', 'modista' ); ?></span>
-            </div>
-        <?php
-        endif;
+		?>
+		<div class="mi-aside-trust-boxes d-flex flex-column gap-2 mb-3">
+			<div class="feature-box express-shipping">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M12 14H13C14.1 14 15 13.1 15 12V2H6C4.5 2 3.19001 2.82999 2.51001 4.04999" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M2 17C2 18.66 3.34 20 5 20H6C6 18.9 6.9 18 8 18C9.1 18 10 18.9 10 20H14C14 18.9 14.9 18 16 18C17.1 18 18 18.9 18 20H19C20.66 20 22 18.66 22 17V14H19C18.45 14 18 13.55 18 13V10C18 9.45 18.45 9 19 9H20.29L18.58 6.01001C18.22 5.39001 17.56 5 16.84 5H15V12C15 13.1 14.1 14 13 14H12" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M8 22C9.10457 22 10 21.1046 10 20C10 18.8954 9.10457 18 8 18C6.89543 18 6 18.8954 6 20C6 21.1046 6.89543 22 8 22Z" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M16 22C17.1046 22 18 21.1046 18 20C18 18.8954 17.1046 18 16 18C14.8954 18 14 18.8954 14 20C14 21.1046 14.8954 22 16 22Z" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M22 12V14H19C18.45 14 18 13.55 18 13V10C18 9.45 18.45 9 19 9H20.29L22 12Z" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M2 8H8" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M2 11H6" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M2 14H4" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+				<span><?php esc_html_e( 'ارسال اکسپرس', 'modista' ); ?></span>
+			</div>
+			<div class="feature-box product-authenticity">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M12 3L4 7V11C4 16.55 7.84 21.74 12 23C16.16 21.74 20 16.55 20 11V7L12 3Z" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+					<path d="M9 12L11 14L15.5 9.5" stroke="#545454" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+				<span><?php esc_html_e( 'ضمانت اصالت و سلامت فیزیکی کالا', 'modista' ); ?></span>
+			</div>
+		</div>
+		<?php
 	}
 }
 if ( ! function_exists( 'remove_variation_availability' ) ) {
