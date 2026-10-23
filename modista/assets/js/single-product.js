@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const variationsForm = document.querySelector('.variations_form_without_button');
     const variationsAddToCartForms = document.querySelectorAll('.variations_form');
 
-    // If product type is variable.
-    if (variationsForm && variationsAddToCartForms) {
+    if (variationsForm && variationsAddToCartForms.length) {
         let customSelects = variationsForm.querySelectorAll('select');
 
         customSelects.forEach(function (select) {
@@ -37,19 +36,22 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    /**
-     * Update add to cart variation for custom skin.
-     */
     const variationsForms = document.querySelectorAll('.mi-variation-select');
 
-    // Helper function to update selected title form
+    function getOptionLabel(li) {
+        const optionName = li.querySelector('.option-name');
+        if (optionName) {
+            return optionName.innerHTML;
+        }
+        return li.textContent.trim();
+    }
+
     function updateFormTitle(variationTitle, textValue) {
         if (variationTitle) {
             variationTitle.innerHTML = textValue;
         }
     }
 
-    // Helper function to update add-to-cart form
     function updateAddToCartForm(attributeName, value) {
         variationsAddToCartForms.forEach(form => {
             const originalSelect = form.querySelector(`select[data-attribute_name="${attributeName}"]`);
@@ -61,7 +63,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Main function to handle color variation selection
     function handleColorVariation( variationForm ) {
 
         const customSelects = variationForm.querySelectorAll('li');
@@ -71,137 +72,106 @@ document.addEventListener("DOMContentLoaded", function () {
         if ( ! attributeName ) return false;
 
         customSelects.forEach(li => {
-            // Pre-select logic
             if (li.classList.contains('selected')) {
-                // Add selected item to header.
-                let textValue = li.querySelector('.option-name').innerHTML;
-                updateFormTitle(variationTitle, textValue)
+                updateFormTitle(variationTitle, getOptionLabel(li));
             }
 
-            // Click event handler
             li.addEventListener('click', () => {
-                const textValue = li.querySelector('.option-name').innerHTML;
+                const textValue = getOptionLabel(li);
                 let value = li.id;
 
-                // Toggle selected class and handle deselection
                 if (li.classList.contains('selected')) {
                     li.classList.remove('selected');
                     value = '';
-                    updateFormTitle(variationTitle, 'انتخاب نشده')
+                    updateFormTitle(variationTitle, 'انتخاب نشده');
                 } else {
                     customSelects.forEach(item => item.classList.remove('selected'));
                     li.classList.add('selected');
-                    updateFormTitle(variationTitle, textValue)
+                    updateFormTitle(variationTitle, textValue);
                 }
 
-                // Update the add-to-cart form
                 updateAddToCartForm(attributeName, value);
             });
         });
 
-        // Trigger initial variation check
         variationsAddToCartForms.forEach(form => form.dispatchEvent(new Event('check_variations')));
     }
 
-    // Apply event listeners if forms exist
-    if (variationsForms) {
+    if (variationsForms.length) {
         variationsForms.forEach( (form) => { handleColorVariation(form); });
     }
 
     /**
-     * Image Gallery slider.
+     * Product gallery: main swiper + horizontal thumbnails.
      */
-    const mainImage = document.querySelector('.woocommerce-product-gallery__wrapper');
-
     document.querySelectorAll('.mi-gallery-carousel').forEach( function(element) {
 
-        const swiper_wrapper = element.querySelector('.swiper');
+        const mainSwiperEl = element.querySelector('.mi-product-gallery-main');
+        const thumbsSwiperEl = element.querySelector('.woocommerce-product-gallery__thumbnails.swiper');
 
-        if (swiper_wrapper === null)
+        if ( mainSwiperEl === null ) {
             return;
+        }
 
-        let hasInitialized = false;
+        let thumbsSwiper = null;
 
-        const slidesPerView = swiper_wrapper.getAttribute('data-slides-per-view') || 4;
-        const slidesPerViewTablet = swiper_wrapper.getAttribute('data-slides-per-view-tablet') || slidesPerView;
-        const slidesPerViewMobile = swiper_wrapper.getAttribute('data-slides-per-view-Mobile') || slidesPerViewTablet;
+        if ( thumbsSwiperEl ) {
+            const slidesPerView = parseInt(thumbsSwiperEl.getAttribute('data-slides-per-view'), 10) || 5;
 
-        const swiperGallery = new Swiper(swiper_wrapper, {
-            // Check for specific classes for different settings
-            loop: swiper_wrapper.classList.contains('loop--enabled'),
-            direction: swiper_wrapper.getAttribute('data-direction') || 'horizontal',
-            autoplay: swiper_wrapper.classList.contains('autoplay--enabled'),
-            centeredSlides: swiper_wrapper.classList.contains('centered--mobile'),
-            slidesPerView: slidesPerViewMobile,
-			allowTouchMove: true,
-			simulateTouch: true,
+            thumbsSwiper = new Swiper(thumbsSwiperEl, {
+                loop: thumbsSwiperEl.classList.contains('loop--enabled'),
+                direction: 'horizontal',
+                slidesPerView: slidesPerView,
+                spaceBetween: 8,
+                freeMode: true,
+                watchSlidesProgress: true,
+                breakpoints: {
+                    768: {
+                        slidesPerView: Math.min(slidesPerView + 1, 7),
+                    },
+                },
+            });
+        }
+
+        const mainConfig = {
+            loop: mainSwiperEl.querySelectorAll('.swiper-slide').length > 1 && thumbsSwiperEl && thumbsSwiperEl.classList.contains('loop--enabled'),
+            allowTouchMove: true,
+            simulateTouch: true,
+            grabCursor: true,
             navigation: {
-                nextEl: element.querySelector('.swiper-button-next'),
-                prevEl: element.querySelector('.swiper-button-prev')
-            },
-            breakpoints: {
-                768: {
-                    slidesPerView: slidesPerViewTablet,
-                    centeredSlides: swiper_wrapper.classList.contains('centered--tablet')
-                },
-                1024: {
-                    slidesPerView: slidesPerView,
-                    centeredSlides: swiper_wrapper.classList.contains('centered')
-                },
-            },
-            pagination: {
-                el: element.querySelector('.swiper-pagination'),
+                nextEl: element.querySelector('.mi-gallery-main-next'),
+                prevEl: element.querySelector('.mi-gallery-main-prev'),
             },
             on: {
-                slideChange: function (swiper) {
-                    const activeSlide = swiper.slides[swiper.activeIndex];
-
-                    const newImageSrc = activeSlide.querySelector('img').getAttribute('data-large_image');
-
-                    if (mainImage && newImageSrc && hasInitialized) {
-
-                        // Update the light box of post image.
-                        mainImage.querySelector('a').setAttribute('href', newImageSrc);
-                        // Update the post image src.
-                        mainImage.querySelector('img').setAttribute('src', newImageSrc);
-                        mainImage.querySelector('img').setAttribute('data-src', newImageSrc);
-                        mainImage.querySelector('img').setAttribute('data-large_image', newImageSrc);
-                    }
-                },
                 init: function () {
-                    hasInitialized = true;
+                    element.style.opacity = '1';
                 },
-            }
-        });
+            },
+        };
+
+        if ( thumbsSwiper ) {
+            mainConfig.thumbs = { swiper: thumbsSwiper };
+        }
+
+        new Swiper(mainSwiperEl, mainConfig);
     });
 
-    /**
-     * Tabs
-     *
-     * Add active class to selected tab.
-     */
     const woocommerceTabs = document.querySelectorAll('.woocommerce-tabs ul[role="tablist"] li');
 
-    if ( woocommerceTabs ) {
+    if ( woocommerceTabs.length ) {
 
-        woocommerceTabs.forEach( function(element) {
+        woocommerceTabs[0].classList.add('active');
 
-            woocommerceTabs[0].classList.add('active');
+        woocommerceTabs.forEach( function(tab) {
 
-            element.addEventListener('click', function () {
-                // Remove all tab active class.
-                woocommerceTabs.forEach( (element) => { element.classList.remove('active'); });
-                // add active class to selected tab.
-                element.classList.add('active');
+            tab.addEventListener('click', function () {
+                woocommerceTabs.forEach( (item) => { item.classList.remove('active'); });
+                tab.classList.add('active');
             });
         });
     }
 
-    /**
-     * Mini Modal
-     * used for product attribute size modal
-     */
-    if (MicroModal) {
+    if (typeof MicroModal !== 'undefined') {
         MicroModal.init({
             openTrigger: 'data-micromodal-trigger',
             closeTrigger: 'data-micromodal-close',

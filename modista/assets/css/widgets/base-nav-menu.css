@@ -233,7 +233,8 @@ ul.sub-menu {
 
     .mi-menu-mobile--column .menu-item-has-children .sub-menu {
         position: unset !important;
-        height: 0;
+        height: auto;
+        max-height: 0;
         overflow: hidden;
         padding: 0;
         margin: 0;
@@ -244,6 +245,7 @@ ul.sub-menu {
         gap: 0;
         flex-direction: column;
         padding-inline: 8px;
+        transition: max-height 0.35s ease;
     }
     
     .mi-menu-mobile--column li,
@@ -254,7 +256,17 @@ ul.sub-menu {
     }
 
     .mi-menu-mobile--column .menu-item-has-children.open > .sub-menu {
-        height: auto;
+        max-height: 2400px;
         margin-block: 16px;
+    }
+
+    .mi-menu-tablet--column .menu-item-has-children .sub-menu {
+        max-height: 0;
+        height: auto;
+        transition: max-height 0.35s ease;
+    }
+
+    .mi-menu-tablet--column .menu-item-has-children.open > .sub-menu {
+        max-height: 2400px;
     }
 }
