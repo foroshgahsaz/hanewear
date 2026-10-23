@@ -1,0 +1,105 @@
+/*
+Theme Name: پوسته فرزند مدیستا
+Author: Mehdi bagheri
+Author URI: https://www.rtl-theme.com/author/mhdibaqri/
+Description: پوسته فرزند مدیستا - پوسته فروشگاهی
+Version: 1.0
+Template: modista
+*/
+.search-input,
+.nikan-track-form-container.nikan-has-font input,
+.nikan-track-form-container button,
+.nikan-ship-label,
+.quantity input,
+.aside-summary .single_add_to_cart_button,
+.elementor-kit-6 button, .elementor-kit-6 input[type="button"], .elementor-kit-6 input[type="submit"], .elementor-kit-6 .elementor-button,
+.elementor-kit-6 input:not([type="button"]):not([type="submit"]), .elementor-kit-6 textarea, .elementor-kit-6 .elementor-field-textual {
+	font-family: Iransans, Tahoma;
+	-moz-font-feature-settings: "ss02";
+	-webkit-font-feature-settings: "ss02";
+	font-feature-settings: "ss02";
+	-moz-font-feature-settings: "ss03";
+	-webkit-font-feature-settings: "ss03";
+	font-feature-settings: "ss03";
+	-moz-font-feature-settings: "ss04";
+	-webkit-font-feature-settings: "ss04";
+	font-feature-settings: "ss04";
+	font-variation-settings: "DOTS" 4;
+}
+
+.mi-mega-menu--default .menu-item--lvl-1 {
+    max-width: 230px;
+    margin: 15px 0;
+}
+.product_meta .sku {
+	font-family: monospace;
+    text-transform: uppercase;
+}
+.woocommerce-Tabs-panel--description h2 {
+    font-size: 22px;
+    margin: 30px 0 20px 0;
+    font-weight: 600;
+}
+.woocommerce-Tabs-panel--description b, .woocommerce-Tabs-panel--description strong {
+    font-weight: 500;
+}
+.woocommerce-Tabs-panel--description table {
+    width: 100%;
+    margin: 40px 0;
+    text-align: right;
+}
+.woocommerce-Tabs-panel--description table tr td {
+    padding: 15px 0;
+    font-size: 14px;
+    border-bottom: 1px solid #99999933;
+}
+.mi-variation-select .color {
+    width: 28px !important;
+    height: 28px !important;
+}
+.variations-color__list .option-name {
+    font-size: 13px;
+}
+@media (max-width: 767px) {
+  .woocommerce-variation-add-to-cart {
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+    background: #fff;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.10);
+    box-sizing: border-box;
+  }
+}
+/*
+.nikan-track-form-container input {
+	border-radius: 5px !important;
+}
+input {
+	font-family: Iransans, Tahoma;
+	-moz-font-feature-settings: "ss02";
+	-webkit-font-feature-settings: "ss02";
+	font-feature-settings: "ss02";
+	-moz-font-feature-settings: "ss03";
+	-webkit-font-feature-settings: "ss03";
+	font-feature-settings: "ss03";
+	-moz-font-feature-settings: "ss04";
+	-webkit-font-feature-settings: "ss04";
+	font-feature-settings: "ss04";
+	font-variation-settings: "DOTS" 4;
+}
+.nikan-track-form-container button, .nikan-ship-label {
+    background-color: #598865;
+    height: 45px;
+    border-radius: 5px !important;
+    margin-right: 10px;
+    font-size: 14px;
+    border: none;
+}
+.nikan-track-form-container input[type="text"] {
+    background-color: #fff !important;
+    margin: 0 5px;
+}

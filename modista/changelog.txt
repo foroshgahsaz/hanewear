@@ -1,0 +1,40 @@
+# Modista - by Mehdi Bagheri
+
+## [1.0.5] - 2025-08-06
+### Fixed
+- Show variation price when price equal
+### Added
+- Update woocommerce tempaltes
+
+## [1.0.4] - 2025-08-06
+### Fixed
+- Megamenu display conditions
+- Megamenu panel fields
+- Single product brand terms
+
+## [1.0.3] - 2025-07-15
+### Fixed
+- Single product thumbnails size
+
+## [1.0.2] - 2025-04-28
+### Fixed
+- Litebox confilict with swiper
+- Like/Dislike confilict in single posts
+
+### Added
+- Title tag theme support
+
+## [1.0.1] - 2025-04-06
+### Fixed
+- Display sidebar in archive category pages
+- Set ticket status in admin panel
+
+### Changed
+- Added hover effect to product cards
+- Minified main scripts
+- Bundled widget scripts
+- Update woocommerce tempaltes version
+
+## [1.0.0] - 2025-04-05
+### Added
+- Initial release

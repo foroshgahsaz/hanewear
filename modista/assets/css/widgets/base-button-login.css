@@ -1,0 +1,17 @@
+.mi-login-account__list {
+    position: absolute;
+    margin-top: 24px;
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s linear, visibility 0.2s linear;
+}
+
+.mi-login-account:hover .mi-login-account__list {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mi-login-account__list li:last-child a {
+    border-bottom: unset !important;
+}

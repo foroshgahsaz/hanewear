@@ -1,0 +1,268 @@
+:root {
+  --mi-white: #FFF;
+  --mi-dark: #000;
+  --mi-trans: transparent;
+  --color-text-100: #F7F7F7;
+  --color-text-300: #989898;
+  --color-text-400: #414141;
+  --color-text-500: #221F1F;
+  --color-success: #277539;
+  --color-success-container: #DAFFE6;
+  --color-error: #BA1A1A;
+  --color-error-container: #FFDAD6;
+  --color-notice: #3B2F00;
+  --color-notice-container: #FEF8DF;
+  --mi-size-1: 0.25rem;
+  --mi-size-2: 0.5rem;
+  --mi-size-3: 0.75rem;
+  --mi-size-4: 1rem;
+  --mi-size-5: 1.25rem;
+  --mi-size-8: 3rem;
+  --e-a-font-family: 'Iransans', serif !important;
+}
+
+/*
+*-------------------
+*font body  
+*-------------------
+*/
+body,
+.rtl #wpadminbar *:not(.ab-icon),
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,a,.search-input {
+	font-family: Iransans, Tahoma;
+}
+@supports (font-variation-settings: normal) {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,a,.search-input {
+		font-family: Iransans, Tahoma;
+		-moz-font-feature-settings: "ss02";
+		-webkit-font-feature-settings: "ss02";
+		font-feature-settings: "ss02";
+		-moz-font-feature-settings: "ss03";
+		-webkit-font-feature-settings: "ss03";
+		font-feature-settings: "ss03";
+		-moz-font-feature-settings: "ss04";
+		-webkit-font-feature-settings: "ss04";
+		font-feature-settings: "ss04";
+		font-variation-settings: "DOTS" 4;
+	}
+}
+
+
+
+
+/*
+*-------------------
+* End font body  
+*-------------------
+*/
+.w-100 {
+  width: 100%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.fs-3--1 {
+  font-size: 18px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: var(--mi-size-1);
+}
+
+.gap-2 {
+  gap: var(--mi-size-2);
+}
+
+.gap-4 {
+  gap: var(--mi-size-4);
+}
+
+.gap-8 {
+  gap: var(--mi-size-8);
+}
+
+.p-2 {
+  padding: var(--mi-size-2);
+}
+
+.p-3 {
+  padding: var(--mi-size-3);
+}
+
+.p-4 {
+  padding: var(--mi-size-4);
+}
+
+.px-3 {
+  padding-inline: var(--mi-size-3);
+}
+
+.px-4 {
+  padding-inline: var(--mi-size-4);
+}
+
+.py-2 {
+  padding-block: var(--mi-size-2);
+}
+
+.pb-1 {
+  padding-bottom: var(--mi-size-1);
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.mb-4 {
+  margin-bottom: var(--mi-size-4);
+}
+
+.justify-content-start {
+  justify-content: flex-start;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
+.align-items-end {
+  align-items: flex-end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.rounded-2 {
+  border-radius: var(--mi-size-2);
+}
+
+.bg-white {
+  background: var(--mi-white);
+}
+
+.bg-text-100 {
+  background: var(--color-text-100);
+}
+
+.rounded-4 {
+  border-radius: var(--mi-size-4);
+} 
+
+.mi-filed-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mi-size-2);
+  padding: var(--mi-size-2);
+  border-radius: var(--mi-size-2);
+  background: #f6f7f7;
+}
+
+/*
+*-------------------
+* Begin Redux Ticket section
+*-------------------
+*/
+#modista-mi_tickets_view th,
+#modista-mi_tickets_view td {
+  padding: 8px;
+}
+
+#modista-mi_tickets_view tbody tr:nth-child(odd) {
+  background-color: #f7f7f7 ;
+}
+
+#modista-mi_tickets_view tbody tr.open td:first-child {
+  border-right: 2px solid #ffc000;
+} /* Ticket open status */
+
+.modista-tickets__pagination a {
+  font-size: 16px;
+  color: var(--color-text-500);
+  background: var(--color-text-100);
+  padding: 4px;
+  width: 8px;
+  text-align: center;
+}
+
+#modista-mi_tickets_view .card__content {
+  overflow-y: scroll;
+  max-height: 40vh;
+}
+
+/*
+*-------------------
+* End Redux Ticket section
+*-------------------
+*/
+
+/*
+*-------------------
+* Begin Elementor Editor
+*-------------------
+*/
+
+.elementor-panel button {
+  font-family: 'Iransans', serif !important;
+}
+
+.elementor-loading-title {
+  letter-spacing: 0 !important;
+  font-size: 16px !important;
+  font-style: normal;
+}
+
+.elementor-hidden-desktop .elementor-widget-container,
+.elementor-hidden-tablet .elementor-widget-container,
+.elementor-hidden-mobile .elementor-widget-container {
+  max-width: 100%;
+}
+
+/*
+*-------------------
+* End Elementor Editor
+*-------------------
+*/

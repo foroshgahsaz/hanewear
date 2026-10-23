@@ -1,0 +1,23 @@
+/*
+*-------------------
+*font body  
+*-------------------
+*/
+
+@font-face {
+    font-family: 'Iransans';
+    src: url('Iransans/IRANSans.woff') format('woff-variations'),
+		 url('Iransans/IRANSans.woff') format('woff');
+
+	src: url('Iransans/IRANSans.woff2') format('woff2-variations'),
+		 url('Iransans/IRANSans.woff2') format('woff2');
+    font-weight: 100 1000;
+    font-display: fallback;
+}
+
+
+/*
+*-------------------
+* End font body  
+*-------------------
+*/

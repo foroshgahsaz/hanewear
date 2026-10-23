@@ -1,0 +1,64 @@
+/*
+*-------------------
+*font body  
+*-------------------
+*/
+
+/*
+@font-face {
+  font-family: 'Kalameh';
+  font-weight: 900;
+  src: url('./kalameh/woff/KalamehWeb(FaNum)-Black.woff') format('woff'),
+      url('./kalameh/woff2/KalamehWeb(FaNum)-Black.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  font-weight: 700;
+  src: url('./kalameh/woff/KalamehWeb(FaNum)-Bold.woff') format('woff'),
+      url('./kalameh/woff2/KalamehWeb(FaNum)-Black.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  font-weight: 600;
+  src: url('./kalameh/woff/KalamehWeb(FaNum)-SemiBold.woff') format('woff'),
+      url('./kalameh/woff2/KalamehWeb(FaNum)-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  font-weight: 500;
+  src: url('./kalameh/woff/KalamehWeb(FaNum)-Medium.woff') format('woff'),
+      url('./kalameh/woff2/KalamehWeb(FaNum)-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  font-weight: 400;
+  src: url('./kalameh/woff/KalamehWeb(FaNum)-Regular.woff') format('woff'),
+      url('./kalameh/woff2/KalamehWeb(FaNum)-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Kalameh';
+  font-weight: 300;
+  src: url('./kalameh/woff/KalamehWeb(FaNum)-Light.woff') format('woff'),
+      url('./kalameh/woff2/KalamehWeb(FaNum)-Light.woff2') format('woff2');
+}
+*/
+@font-face {
+    font-family: 'Iransans';
+    src: url('Iransans/IRANSans.woff') format('woff-variations'),
+		 url('Iransans/IRANSans.woff') format('woff');
+
+	src: url('Iransans/IRANSans.woff2') format('woff2-variations'),
+		 url('Iransans/IRANSans.woff2') format('woff2');
+    font-weight: 100 1000;
+    font-display: fallback;
+}
+/*
+*-------------------
+* End font body  
+*-------------------
+*/

@@ -1,0 +1,32 @@
+.mi-category__link {
+    position: relative;
+    overflow: hidden;
+}
+
+.mi-category__link:hover {
+    background: linear-gradient(220deg, rgba(36, 33, 33, 0.00) 25.01%, rgba(32, 30, 30, 0.52) 88.86%);
+}
+
+.mi-category__link .mi-category__image img {
+    transition: all 0.3s ease;
+    position: relative;
+    right: 0;
+    top: 0;
+}
+
+.mi-category__link:hover .mi-category__image img {
+    scale: 2.5;
+    right: 40%;
+    top: 60px;
+}
+
+.mi-category__link:hover .mi-category__title {
+    top: 6px;
+    right: 10px;
+    width: 60%;
+    font-weight: 500 !important;
+    line-height: 150% !important;
+    text-align: start !important;
+    position: absolute;
+    white-space: normal;
+}

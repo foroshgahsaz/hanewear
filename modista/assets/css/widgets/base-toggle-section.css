@@ -1,0 +1,25 @@
+.mi-toggle-section__button {
+    cursor: pointer;
+}
+
+.mi-toggle-section__content {
+    position: fixed;
+    left: 100vw;
+    top: 0;
+    z-index: 1001;
+    height: 100%;
+    transition: transform 0.5s ease;
+    max-width: 100%;
+    overflow-y: scroll;
+}
+
+.mi-toggle-section__content.active {
+    transform: translateX(-100%);
+}
+
+.mi-toggle-section__close {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+}
