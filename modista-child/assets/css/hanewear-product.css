@@ -1,14 +1,45 @@
 /* Hanewear — single product gallery & purchase bar */
 
+@media (min-width: 768px) {
+    .single-product .hanewear-single-product-layout {
+        flex-wrap: nowrap !important;
+    }
+
+    .single-product .hanewear-single-product-layout > .hanewear-product-gallery-col {
+        flex: 0 0 min(40%, 460px);
+        max-width: 460px;
+        width: auto !important;
+    }
+
+    .single-product .hanewear-single-product-layout > .summary.entry-summary {
+        flex: 1 1 0;
+        min-width: 260px;
+    }
+
+    .single-product .hanewear-single-product-layout > .hanewear-product-aside {
+        flex: 0 0 min(28%, 300px);
+        max-width: 300px;
+    }
+}
+
 .single-product .mi-gallery-carousel {
     width: 100%;
     max-width: 100%;
     align-items: stretch;
 }
 
-.single-product .mi-gallery-carousel.mi-product-card__item {
-    flex: 1 1 100%;
-    max-width: 100%;
+.single-product .woocommerce-product-gallery__thumbnails {
+    height: auto !important;
+    cursor: grab;
+    touch-action: pan-y pinch-zoom;
+}
+
+.single-product .woocommerce-product-gallery__thumbnails.swiper-grab-cursor {
+    cursor: grab;
+}
+
+.single-product .woocommerce-product-gallery__thumbnails.swiper-grabbing {
+    cursor: grabbing;
 }
 
 .single-product .mi-product-gallery-main {

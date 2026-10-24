@@ -121,9 +121,22 @@ document.addEventListener("DOMContentLoaded", function () {
                 direction: 'horizontal',
                 slidesPerView: 'auto',
                 spaceBetween: 12,
-                freeMode: true,
+                freeMode: {
+                    enabled: true,
+                    momentum: true,
+                    momentumRatio: 0.85,
+                    sticky: false,
+                },
+                grabCursor: true,
+                simulateTouch: true,
+                touchEventsTarget: 'container',
                 watchSlidesProgress: true,
                 slideToClickedSlide: true,
+                watchOverflow: true,
+                resistanceRatio: 0.85,
+                longSwipes: true,
+                shortSwipes: true,
+                threshold: 5,
             });
         }
 
@@ -134,6 +147,10 @@ document.addEventListener("DOMContentLoaded", function () {
             allowTouchMove: slideCount > 1,
             simulateTouch: true,
             grabCursor: slideCount > 1,
+            touchEventsTarget: 'container',
+            longSwipes: true,
+            shortSwipes: true,
+            threshold: 8,
             navigation: {
                 nextEl: element.querySelector('.mi-gallery-main-next'),
                 prevEl: element.querySelector('.mi-gallery-main-prev'),

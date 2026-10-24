@@ -141,14 +141,14 @@ function hanewear_enqueue_assets() {
 			'hanewear-single-product',
 			get_stylesheet_directory_uri() . '/assets/js/hanewear-single-product.js',
 			[ 'mi-swiper' ],
-			'1.0.2',
+			'1.0.3',
 			true
 		);
 		wp_enqueue_style(
 			'hanewear-product',
 			get_stylesheet_directory_uri() . '/assets/css/hanewear-product.css',
 			[ 'mi-frontend' ],
-			'1.0.2'
+			'1.0.3'
 		);
 	}
 
