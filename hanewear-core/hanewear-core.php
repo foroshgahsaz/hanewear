@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Hanewear Core
  * Description: سفارشی‌سازی‌های hanewear — Query ویجت‌های محصول Elementor
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Hanewear
  * Text Domain: hanewear-core
  * Requires at least: 6.0
@@ -11,7 +11,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'HANEWEAR_CORE_VERSION', '1.0.1' );
+define( 'HANEWEAR_CORE_VERSION', '1.0.2' );
 define( 'HANEWEAR_CORE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'HANEWEAR_CORE_URL', plugin_dir_url( __FILE__ ) );
 
@@ -31,11 +31,13 @@ function hanewear_core_bootstrap() {
 		return;
 	}
 
+	require_once HANEWEAR_CORE_PATH . 'includes/Elementor/Control_Injection.php';
 	require_once HANEWEAR_CORE_PATH . 'includes/Elementor/Widgets/Woo_Product_Card.php';
 	require_once HANEWEAR_CORE_PATH . 'includes/Elementor/Widgets/Woo_Product_Carousel.php';
 	require_once HANEWEAR_CORE_PATH . 'includes/Elementor/Widgets/Woo_Product_Carousel_Slide.php';
 	require_once HANEWEAR_CORE_PATH . 'includes/Elementor/Widgets_Registry.php';
 
+	Hanewear\Core\Elementor\Control_Injection::init();
 	Hanewear\Core\Elementor\Widgets_Registry::init();
 }
 
