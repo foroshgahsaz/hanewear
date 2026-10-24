@@ -12,15 +12,15 @@ class Product_Query_Helper {
 		$widget->add_control(
 			'product_order_by',
 			[
-				'label'   => __( 'Order By', 'hanewear-core' ),
+				'label'   => __( 'مرتب‌سازی', 'hanewear-core' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'date',
 				'options' => [
-					'date'           => __( 'Newest', 'hanewear-core' ),
-					'meta_value_num' => __( 'Best Sellers', 'hanewear-core' ),
-					'price'          => __( 'Price', 'hanewear-core' ),
-					'title'          => __( 'Title', 'hanewear-core' ),
-					'rand'           => __( 'Random', 'hanewear-core' ),
+					'date'           => __( 'جدیدترین', 'hanewear-core' ),
+					'meta_value_num' => __( 'پرفروش‌ترین', 'hanewear-core' ),
+					'price'          => __( 'قیمت', 'hanewear-core' ),
+					'title'          => __( 'عنوان', 'hanewear-core' ),
+					'rand'           => __( 'تصادفی', 'hanewear-core' ),
 				],
 			]
 		);
@@ -28,12 +28,12 @@ class Product_Query_Helper {
 		$widget->add_control(
 			'product_order',
 			[
-				'label'   => __( 'Order', 'hanewear-core' ),
+				'label'   => __( 'ترتیب', 'hanewear-core' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'DESC',
 				'options' => [
-					'DESC' => __( 'Descending', 'hanewear-core' ),
-					'ASC'  => __( 'Ascending', 'hanewear-core' ),
+					'DESC' => __( 'نزولی', 'hanewear-core' ),
+					'ASC'  => __( 'صعودی', 'hanewear-core' ),
 				],
 			]
 		);
@@ -41,7 +41,7 @@ class Product_Query_Helper {
 		$widget->add_control(
 			'product_on_sale',
 			[
-				'label'        => __( 'On Sale Only', 'hanewear-core' ),
+				'label'        => __( 'فقط محصولات تخفیف‌دار', 'hanewear-core' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => '',
@@ -51,7 +51,7 @@ class Product_Query_Helper {
 		$widget->add_control(
 			'product_featured',
 			[
-				'label'        => __( 'Featured Only', 'hanewear-core' ),
+				'label'        => __( 'فقط محصولات ویژه', 'hanewear-core' ),
 				'type'         => Controls_Manager::SWITCHER,
 				'return_value' => 'yes',
 				'default'      => '',
