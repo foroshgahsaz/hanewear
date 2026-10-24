@@ -48,6 +48,7 @@ $wrapper_classes = apply_filters(
 		'mi-gallery-carousel',
 		'position-relative',
 		'w-100',
+		'hanewear-product-gallery-col',
 	)
 );
 
