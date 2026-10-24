@@ -1,44 +1,123 @@
-/* Hanewear — single product UX (child theme) */
+/* Hanewear — single product gallery & purchase bar */
 
-.mi-gallery-carousel {
+.single-product .mi-gallery-carousel {
+    width: 100%;
+    max-width: 100%;
+    align-items: stretch;
+}
+
+.single-product .mi-gallery-carousel.mi-product-card__item {
+    flex: 1 1 100%;
     max-width: 100%;
 }
 
-.mi-product-gallery-main {
+.single-product .mi-product-gallery-main {
     width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
     position: relative;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-.mi-product-gallery-main .swiper-slide {
+.single-product .mi-product-gallery-main .swiper-slide {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.mi-product-gallery-main .swiper-slide img,
-.mi-product-gallery-main .wp-post-image {
-    width: 100%;
-    max-width: 410px;
-}
-
-.mi-product-gallery-main .mi-gallery-main-prev,
-.mi-product-gallery-main .mi-gallery-main-next {
-    background: #FFF;
-    width: 44px;
-    border-radius: 8px !important;
-}
-
-.mi-product-card__gallery-thumbnails.single-product {
+.single-product .mi-product-gallery-main .woocommerce-product-gallery__image,
+.single-product .mi-product-gallery-main .woocommerce-product-gallery__image a {
+    display: block;
     width: 100%;
 }
 
-.mi-product-card__gallery-thumbnails.single-product .woocommerce-product-gallery__thumbnails {
-    height: auto;
-    width: 100%;
+.single-product .mi-product-gallery-main .swiper-slide img,
+.single-product .mi-product-gallery-main .wp-post-image {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 280px;
+    max-height: 520px;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
-.mi-product-card__gallery-thumbnails.single-product .swiper-slide.thumbnail {
-    width: 70px;
+.single-product .mi-product-gallery-main .mi-gallery-main-prev,
+.single-product .mi-product-gallery-main .mi-gallery-main-next {
+    background: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    top: 50%;
+    margin-top: 0;
+    transform: translateY(-50%);
+}
+
+.single-product .mi-product-gallery-main .mi-gallery-main-prev {
+    left: 12px !important;
+    right: auto !important;
+}
+
+.single-product .mi-product-gallery-main .mi-gallery-main-next {
+    right: 12px !important;
+    left: auto !important;
+}
+
+.single-product .hanewear-gallery-thumbs {
+    width: 100%;
+    max-width: 520px;
+    margin: 12px auto 0;
+}
+
+.single-product .hanewear-gallery-thumbs .woocommerce-product-gallery__thumbnails {
+    height: auto !important;
+    width: 100%;
+    padding: 0;
+}
+
+.single-product .woocommerce-product-gallery__thumbnails.status-active:before,
+.single-product .woocommerce-product-gallery__thumbnails.status-active:after,
+.single-product .hanewear-gallery-thumbs .woocommerce-product-gallery__thumbnails:before,
+.single-product .hanewear-gallery-thumbs .woocommerce-product-gallery__thumbnails:after {
+    display: none !important;
+    content: none !important;
+}
+
+.single-product .hanewear-gallery-thumbs .swiper-slide.thumbnail {
+    width: 64px !important;
+    height: 64px;
+    flex-shrink: 0;
     cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0.55;
+    border: 2px solid #e8e8e8;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.single-product .hanewear-gallery-thumbs .swiper-slide.thumbnail img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.single-product .hanewear-gallery-thumbs .swiper-slide.thumbnail.swiper-slide-thumb-active {
+    opacity: 1;
+    border-color: var(--mi-color-secondary, #598865);
+}
+
+.single-product .woocommerce-product-gallery .swiper-button-next,
+.single-product .woocommerce-product-gallery .swiper-rtl .swiper-button-prev {
+    right: 12px !important;
+}
+
+.single-product .woocommerce-product-gallery .swiper-button-prev,
+.single-product .woocommerce-product-gallery .swiper-rtl .swiper-button-next {
+    left: 12px !important;
 }
 
 .mi-product-measurements {
@@ -55,7 +134,7 @@
     align-items: center;
     gap: 8px;
     border-radius: 12px;
-    background: #FFF;
+    background: #fff;
     padding: 8px 12px;
     color: #545454;
     font-size: 16px;
@@ -63,9 +142,32 @@
     line-height: 200%;
 }
 
+@media (min-width: 768px) {
+    .single-product .mi-product-gallery-main .swiper-slide img,
+    .single-product .mi-product-gallery-main .wp-post-image {
+        min-height: 420px;
+        max-height: 470px;
+    }
+
+    .single-product .hanewear-gallery-thumbs .swiper-slide.thumbnail {
+        width: 70px !important;
+        height: 70px;
+    }
+}
+
 @media (max-width: 767.98px) {
     body.single-product {
         padding-bottom: 120px;
+    }
+
+    .single-product #product .summary.entry-summary {
+        order: 2;
+        width: 100%;
+    }
+
+    .single-product .woocommerce-product-gallery {
+        order: 1;
+        width: 100%;
     }
 
     .single-product .aside-summary {
@@ -146,17 +248,5 @@
 
     .single-product .aside-summary .stock {
         display: none;
-    }
-}
-
-@media (min-width: 767.98px) {
-    .mi-product-gallery-main .wp-post-image {
-        height: 470px;
-        width: 410px;
-    }
-
-    .mi-product-card__gallery-thumbnails.single-product .woocommerce-product-gallery__thumbnails img {
-        width: 70px;
-        height: 70px;
     }
 }
