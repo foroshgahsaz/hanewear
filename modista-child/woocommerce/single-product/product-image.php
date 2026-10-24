@@ -51,17 +51,17 @@ $wrapper_classes = apply_filters(
 	)
 );
 
-$single_product_gallery_status = $redux_mi_theme['single_product_gallery'] ?? false;
-$show_thumbnails               = $gallery_image_ids && $single_product_gallery_status === 'on';
+$show_thumbnails = count( $gallery_image_ids ) > 1;
 ?>
 <div class="<?php echo esc_attr( implode( ' ', array_map( 'sanitize_html_class', $wrapper_classes ) ) ); ?> mi-product-card__item" data-columns="<?php echo esc_attr( $columns ); ?>" style="opacity: 0; transition: opacity .25s ease-in-out;">
+	<?php
+	if ( function_exists( 'woocommerce_show_product_sale_flash' ) ) {
+		woocommerce_show_product_sale_flash();
+	}
+	?>
 	<div class="mi-product-gallery-main swiper woocommerce-product-gallery__wrapper mi-product-card__image">
 		<div class="swiper-wrapper">
 			<?php
-			if ( function_exists( 'woocommerce_show_product_sale_flash' ) ) {
-				woocommerce_show_product_sale_flash();
-			}
-
 			if ( ! empty( $gallery_image_ids ) ) {
 				foreach ( $gallery_image_ids as $gallery_index => $image_id ) {
 					echo '<div class="swiper-slide">';
@@ -84,11 +84,9 @@ $show_thumbnails               = $gallery_image_ids && $single_product_gallery_s
 		<?php endif; ?>
 	</div>
 	<?php if ( $show_thumbnails ) :
-		$slides_per_view = 5;
-		$active_slider   = count( $gallery_image_ids ) > $slides_per_view;
 		?>
-		<div class="mi-product-card__gallery-thumbnails single-product">
-			<div class="woocommerce-product-gallery__thumbnails swiper loop--enabled status-<?php echo $active_slider ? 'active' : 'off'; ?>" data-direction="horizontal" data-slides-per-view="<?php echo esc_attr( $slides_per_view ); ?>">
+		<div class="mi-product-card__gallery-thumbnails single-product hanewear-gallery-thumbs">
+			<div class="woocommerce-product-gallery__thumbnails swiper status-off" data-direction="horizontal">
 				<div class="swiper-wrapper">
 					<?php
 					$GLOBALS['mi_product_gallery_image_ids'] = $gallery_image_ids;

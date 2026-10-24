@@ -116,28 +116,24 @@ document.addEventListener("DOMContentLoaded", function () {
         let thumbsSwiper = null;
 
         if ( thumbsSwiperEl ) {
-            const slidesPerView = parseInt(thumbsSwiperEl.getAttribute('data-slides-per-view'), 10) || 5;
-
             thumbsSwiper = new Swiper(thumbsSwiperEl, {
-                loop: thumbsSwiperEl.classList.contains('loop--enabled'),
+                loop: false,
                 direction: 'horizontal',
-                slidesPerView: slidesPerView,
-                spaceBetween: 8,
+                slidesPerView: 'auto',
+                spaceBetween: 12,
                 freeMode: true,
                 watchSlidesProgress: true,
-                breakpoints: {
-                    768: {
-                        slidesPerView: Math.min(slidesPerView + 1, 7),
-                    },
-                },
+                slideToClickedSlide: true,
             });
         }
 
+        const slideCount = mainSwiperEl.querySelectorAll('.swiper-slide').length;
+
         const mainConfig = {
-            loop: mainSwiperEl.querySelectorAll('.swiper-slide').length > 1 && thumbsSwiperEl && thumbsSwiperEl.classList.contains('loop--enabled'),
-            allowTouchMove: true,
+            loop: false,
+            allowTouchMove: slideCount > 1,
             simulateTouch: true,
-            grabCursor: true,
+            grabCursor: slideCount > 1,
             navigation: {
                 nextEl: element.querySelector('.mi-gallery-main-next'),
                 prevEl: element.querySelector('.mi-gallery-main-prev'),
